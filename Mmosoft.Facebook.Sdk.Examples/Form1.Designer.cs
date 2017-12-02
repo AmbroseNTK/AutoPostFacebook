@@ -43,8 +43,10 @@
             this.numSecond = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.btLoadGroupList = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboGroupList = new System.Windows.Forms.ComboBox();
             this.btSaveListGroup = new System.Windows.Forms.Button();
+            this.btLogin = new System.Windows.Forms.Button();
+            this.btLogout = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSecond)).BeginInit();
             this.SuspendLayout();
@@ -61,6 +63,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btLogout);
+            this.groupBox1.Controls.Add(this.btLogin);
             this.groupBox1.Controls.Add(this.txtPassword);
             this.groupBox1.Controls.Add(this.txtUsername);
             this.groupBox1.Controls.Add(this.label2);
@@ -70,7 +74,7 @@
             this.groupBox1.Size = new System.Drawing.Size(703, 87);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Nhập tài khoản Facebok của bạn";
+            this.groupBox1.Text = "Nhập tài khoản Facebook của bạn";
             // 
             // txtPassword
             // 
@@ -141,12 +145,22 @@
             this.progressBar1.Size = new System.Drawing.Size(456, 23);
             this.progressBar1.TabIndex = 11;
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // numSecond
             // 
             this.numSecond.Location = new System.Drawing.Point(139, 303);
+            this.numSecond.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
             this.numSecond.Name = "numSecond";
             this.numSecond.Size = new System.Drawing.Size(102, 20);
             this.numSecond.TabIndex = 12;
+            this.numSecond.ValueChanged += new System.EventHandler(this.numSecond_ValueChanged);
             // 
             // label4
             // 
@@ -165,14 +179,16 @@
             this.btLoadGroupList.TabIndex = 14;
             this.btLoadGroupList.Text = "Nhập danh sách group";
             this.btLoadGroupList.UseVisualStyleBackColor = true;
+            this.btLoadGroupList.Click += new System.EventHandler(this.btLoadGroupList_Click);
             // 
-            // comboBox1
+            // comboGroupList
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(102, 271);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(195, 21);
-            this.comboBox1.TabIndex = 15;
+            this.comboGroupList.FormattingEnabled = true;
+            this.comboGroupList.Location = new System.Drawing.Point(102, 271);
+            this.comboGroupList.Name = "comboGroupList";
+            this.comboGroupList.Size = new System.Drawing.Size(195, 21);
+            this.comboGroupList.TabIndex = 15;
+            this.comboGroupList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboGroupList_KeyDown);
             // 
             // btSaveListGroup
             // 
@@ -183,13 +199,32 @@
             this.btSaveListGroup.Text = "Lưu danh sách";
             this.btSaveListGroup.UseVisualStyleBackColor = true;
             // 
+            // btLogin
+            // 
+            this.btLogin.Location = new System.Drawing.Point(392, 22);
+            this.btLogin.Name = "btLogin";
+            this.btLogin.Size = new System.Drawing.Size(69, 46);
+            this.btLogin.TabIndex = 17;
+            this.btLogin.Text = "Đăng nhập";
+            this.btLogin.UseVisualStyleBackColor = true;
+            this.btLogin.Click += new System.EventHandler(this.btLogin_Click);
+            // 
+            // btLogout
+            // 
+            this.btLogout.Location = new System.Drawing.Point(467, 22);
+            this.btLogout.Name = "btLogout";
+            this.btLogout.Size = new System.Drawing.Size(69, 46);
+            this.btLogout.TabIndex = 18;
+            this.btLogout.Text = "Đăng xuất";
+            this.btLogout.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(733, 337);
             this.Controls.Add(this.btSaveListGroup);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboGroupList);
             this.Controls.Add(this.btLoadGroupList);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.numSecond);
@@ -201,6 +236,7 @@
             this.Controls.Add(this.btnPostMyWall);
             this.Name = "Form1";
             this.Text = "Auto Post Facebook";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSecond)).EndInit();
@@ -225,7 +261,9 @@
         private System.Windows.Forms.NumericUpDown numSecond;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btLoadGroupList;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboGroupList;
         private System.Windows.Forms.Button btSaveListGroup;
+        private System.Windows.Forms.Button btLogout;
+        private System.Windows.Forms.Button btLogin;
     }
 }
