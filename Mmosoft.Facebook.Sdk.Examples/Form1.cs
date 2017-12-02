@@ -69,13 +69,21 @@ namespace Mmosoft.Facebook.Sdk.Examples
         private void timer1_Tick(object sender, EventArgs e)
         {
             elapsedTime++;
-            progressBar1.Value = elapsedTime;
+            //progressBar1.Value = elapsedTime;
             if (elapsedTime >= maxTime)
             {
                 if (curIndex < listGroup.Count)
                 {
-                    facebookClient.PostToGroup(txtContent.Text, listGroup[curIndex]);
-                    curIndex++;
+                    try
+                    {
+                        facebookClient.PostToGroup(txtContent.Text, listGroup[curIndex]);
+                        curIndex++;
+                        
+                    }
+                    catch
+                    {
+
+                    }
                 }
                 else
                 {
@@ -115,7 +123,7 @@ namespace Mmosoft.Facebook.Sdk.Examples
         {
             
             maxTime = (int)numSecond.Value;
-            progressBar1.Maximum = maxTime;
+            progressBar1.Maximum = maxTime+1;
         }
 
         private void btLogin_Click(object sender, EventArgs e)
