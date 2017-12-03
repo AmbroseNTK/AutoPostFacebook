@@ -36,6 +36,7 @@ namespace Mmosoft.Facebook.Sdk.Examples
             btnPostGroup.Enabled = false;
             comboGroupList.Enabled = false;
             processPost.Maximum = listGroup.Count;
+            
         }
 
         private void comboGroupList_KeyDown(object sender, KeyEventArgs e)
@@ -97,10 +98,11 @@ namespace Mmosoft.Facebook.Sdk.Examples
                     comboGroupList.Enabled = true;
                     MessageBox.Show("Đăng tin lên Group Facebook thành công!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     timer1.Stop();
-                    elapsedTime = 0;
+                    
                     
                 }
-                
+                elapsedTime = 0;
+                progressBar1.Value = 0;
             }
             else
             {
