@@ -9,6 +9,7 @@ namespace Mmosoft.Facebook.Sdk.Examples
 {
     class Program
     {
+        [STAThreadAttribute]
         static void Main(string[] args)
         {
 

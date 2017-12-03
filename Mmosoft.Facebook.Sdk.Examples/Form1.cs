@@ -34,7 +34,8 @@ namespace Mmosoft.Facebook.Sdk.Examples
             timer1.Start();
             numSecond.Enabled = false;
             btnPostGroup.Enabled = false;
-            
+            comboGroupList.Enabled = false;
+            processPost.Maximum = listGroup.Count;
         }
 
         private void comboGroupList_KeyDown(object sender, KeyEventArgs e)
@@ -52,25 +53,28 @@ namespace Mmosoft.Facebook.Sdk.Examples
                 try
                 {
                     listGroup.Remove(comboGroupList.Text);
+                    comboGroupList.Refresh();
+                    comboGroupList.DataSource = null;
+                    comboGroupList.DataSource = listGroup;
+                    comboGroupList.Text = "";
                 }
                 catch { }
             }
               
         }
-        [STAThreadAttribute]
+
         private void Form1_Load(object sender, EventArgs e)
         {
             listGroup = new List<string>();
             timer1.Interval = 1000;
-            
-            
+            maxTime = (int)numSecond.Value;
+            progressBar1.Maximum = maxTime;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             elapsedTime++;
-            //progressBar1.Value = elapsedTime;
-            if (elapsedTime >= maxTime)
+            if (elapsedTime > maxTime)
             {
                 if (curIndex < listGroup.Count)
                 {
@@ -78,7 +82,7 @@ namespace Mmosoft.Facebook.Sdk.Examples
                     {
                         facebookClient.PostToGroup(txtContent.Text, listGroup[curIndex]);
                         curIndex++;
-                        
+                        processPost.Value = curIndex;
                     }
                     catch
                     {
@@ -90,11 +94,17 @@ namespace Mmosoft.Facebook.Sdk.Examples
                     curIndex = 0;
                     numSecond.Enabled = true;
                     btnPostGroup.Enabled = true;
+                    comboGroupList.Enabled = true;
                     MessageBox.Show("Đăng tin lên Group Facebook thành công!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     timer1.Stop();
                     elapsedTime = 0;
+                    
                 }
                 
+            }
+            else
+            {
+                progressBar1.Value = elapsedTime;
             }
         }
 
@@ -116,6 +126,8 @@ namespace Mmosoft.Facebook.Sdk.Examples
                     }
                     catch { }
                 }
+                comboGroupList.DataSource = null;
+                comboGroupList.DataSource = listGroup;
             }
         }
 
@@ -137,6 +149,21 @@ namespace Mmosoft.Facebook.Sdk.Examples
             catch(Exception ex)
             {
                 MessageBox.Show("Không thể đăng nhập\n"+ex.Message, "Login error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btSaveListGroup_Click(object sender, EventArgs e)
+        {
+            string data = "";
+            foreach(string group in listGroup)
+            {
+                data += group + "\n";
+            }
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Title = "Save file to";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                File.WriteAllText(saveFileDialog.FileName, data);
             }
         }
     }

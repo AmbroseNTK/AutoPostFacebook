@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.btnPostMyWall = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btLogout = new System.Windows.Forms.Button();
+            this.btLogin = new System.Windows.Forms.Button();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,8 +47,8 @@
             this.btLoadGroupList = new System.Windows.Forms.Button();
             this.comboGroupList = new System.Windows.Forms.ComboBox();
             this.btSaveListGroup = new System.Windows.Forms.Button();
-            this.btLogin = new System.Windows.Forms.Button();
-            this.btLogout = new System.Windows.Forms.Button();
+            this.processPost = new System.Windows.Forms.ProgressBar();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSecond)).BeginInit();
             this.SuspendLayout();
@@ -75,6 +77,25 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Nhập tài khoản Facebook của bạn";
+            // 
+            // btLogout
+            // 
+            this.btLogout.Location = new System.Drawing.Point(467, 22);
+            this.btLogout.Name = "btLogout";
+            this.btLogout.Size = new System.Drawing.Size(69, 46);
+            this.btLogout.TabIndex = 18;
+            this.btLogout.Text = "Đăng xuất";
+            this.btLogout.UseVisualStyleBackColor = true;
+            // 
+            // btLogin
+            // 
+            this.btLogin.Location = new System.Drawing.Point(392, 22);
+            this.btLogin.Name = "btLogin";
+            this.btLogin.Size = new System.Drawing.Size(69, 46);
+            this.btLogin.TabIndex = 17;
+            this.btLogin.Text = "Đăng nhập";
+            this.btLogin.UseVisualStyleBackColor = true;
+            this.btLogin.Click += new System.EventHandler(this.btLogin_Click);
             // 
             // txtPassword
             // 
@@ -160,6 +181,11 @@
             this.numSecond.Name = "numSecond";
             this.numSecond.Size = new System.Drawing.Size(102, 20);
             this.numSecond.TabIndex = 12;
+            this.numSecond.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
             this.numSecond.ValueChanged += new System.EventHandler(this.numSecond_ValueChanged);
             // 
             // label4
@@ -198,31 +224,31 @@
             this.btSaveListGroup.TabIndex = 16;
             this.btSaveListGroup.Text = "Lưu danh sách";
             this.btSaveListGroup.UseVisualStyleBackColor = true;
+            this.btSaveListGroup.Click += new System.EventHandler(this.btSaveListGroup_Click);
             // 
-            // btLogin
+            // processPost
             // 
-            this.btLogin.Location = new System.Drawing.Point(392, 22);
-            this.btLogin.Name = "btLogin";
-            this.btLogin.Size = new System.Drawing.Size(69, 46);
-            this.btLogin.TabIndex = 17;
-            this.btLogin.Text = "Đăng nhập";
-            this.btLogin.UseVisualStyleBackColor = true;
-            this.btLogin.Click += new System.EventHandler(this.btLogin_Click);
+            this.processPost.Location = new System.Drawing.Point(259, 329);
+            this.processPost.Name = "processPost";
+            this.processPost.Size = new System.Drawing.Size(456, 23);
+            this.processPost.TabIndex = 17;
             // 
-            // btLogout
+            // label5
             // 
-            this.btLogout.Location = new System.Drawing.Point(467, 22);
-            this.btLogout.Name = "btLogout";
-            this.btLogout.Size = new System.Drawing.Size(69, 46);
-            this.btLogout.TabIndex = 18;
-            this.btLogout.Text = "Đăng xuất";
-            this.btLogout.UseVisualStyleBackColor = true;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(164, 339);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(54, 13);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "Tiến trình:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(733, 337);
+            this.ClientSize = new System.Drawing.Size(733, 361);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.processPost);
             this.Controls.Add(this.btSaveListGroup);
             this.Controls.Add(this.comboGroupList);
             this.Controls.Add(this.btLoadGroupList);
@@ -265,5 +291,7 @@
         private System.Windows.Forms.Button btSaveListGroup;
         private System.Windows.Forms.Button btLogout;
         private System.Windows.Forms.Button btLogin;
+        private System.Windows.Forms.ProgressBar processPost;
+        private System.Windows.Forms.Label label5;
     }
 }
